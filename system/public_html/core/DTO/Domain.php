@@ -55,7 +55,7 @@ class Domain
 
     public function isValidRoot(): bool
     {
-        return file_exists($this->root_directory);
+        return file_exists(str_replace('{host}', $this->host, $this->root_directory));
     }
 
     public function isAvailable(): bool
