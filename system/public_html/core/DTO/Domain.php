@@ -80,6 +80,9 @@ class Domain
 
     public function adminUrl(): string
     {
+        if(str_contains($this->admin_path, '://')) {
+            return $this->admin_path;
+        }
         return $this->siteUrl().'/'.ltrim($this->admin_path, '/');
     }
 
