@@ -80,7 +80,7 @@ class Domain
 
     public function adminUrl(): string
     {
-        return 'http'.($this->ssl ? 's' : '').'://'.$this->host.'/'.ltrim($this->admin_path, '/');
+        return $this->siteUrl().'/'.ltrim($this->admin_path, '/');
     }
 
     public function toArray(): array
