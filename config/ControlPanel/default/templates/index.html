@@ -116,19 +116,21 @@
           </div>
           <p>1. Добавьте в файл <code>OSPanel/config/domains.ini</code> секцию следующего содержания:</p>
           <pre class="text-bg-dark p-3">[api.ospanel]
-aliases         =
-enabled         = on
-engine          = PHP-8.1
-ip              = auto
-log_format      = combined
-cgi_directory   = &#123;root_dir&#125;\system\cgi-bin
-root_directory  = &#123;root_dir&#125;\system\public_html
-self_config     = off
-ssl             = off
-ssl_cert_file   = &#123;root_dir&#125;\user\ssl\default\cert.crt
-ssl_key_file    = &#123;root_dir&#125;\user\ssl\default\cert.key
-project_modules =
-project_command =</pre>
+aliases             =
+enabled             = on
+engine              = PHP-8.1
+ip                  = auto
+log_format          = combined
+cgi_directory       = &#123;root_dir&#125;\system\cgi-bin
+root_directory      = &#123;root_dir&#125;\system\public_html
+self_config         = off
+ssl                 = off
+ssl_cert_file       = &#123;root_dir&#125;\user\ssl\default\cert.crt
+ssl_key_file        = &#123;root_dir&#125;\user\ssl\default\cert.key
+project_command     =
+project_modules     =
+project_url         = http://&#123;host&#125;
+project_use_win_env = off</pre>
           <p>2. Откройте интерфейс командной строки и выполните команду:</p>
           <pre class="text-bg-dark p-3">osp on PHP-8.1</pre>
           <p>3. Обновите эту страницу</p>
@@ -249,6 +251,22 @@ project_command =</pre>
             <label class="col-sm-3 col-form-label">Project modules</label>
             <div class="col-sm-9">
               <input class="form-control font-monospace" name="project_modules" type="text">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">Project url</label>
+            <div class="col-sm-9">
+              <input class="form-control font-monospace" name="project_url" type="text">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-form-label col-sm-3 pt-0">Project use win env</div>
+            <div class="col-sm-9">
+              <div class="form-check">
+                <input name="project_use_win_env" type="hidden" value="0">
+                <input class="form-check-input" id="project-use-win-env" name="project_use_win_env" type="checkbox" value="1">
+                <label class="form-check-label" for="project-use-win-env">Включён</label>
+              </div>
             </div>
           </div>
           <p><b><i><small>Custom settings</small></i></b></p>

@@ -12,8 +12,10 @@
  * @property {boolean} ssl
  * @property {string} ssl_cert_file
  * @property {string} ssl_key_file
- * @property {string} project_modules
  * @property {string} project_command
+ * @property {string} project_modules
+ * @property {string} project_url
+ * @property {boolean} project_use_win_env
  */
 
 function domain_action(action, host) {
@@ -73,8 +75,10 @@ function updateModalForm(modal, data) {
   modal.querySelector('select[name=engine]').value = data?.engine ?? 'PHP-8.1';
   modal.querySelector('input[name=root_directory]').value = data?.root_directory ?? '';
   modal.querySelector('input[name=admin_path]').value = data?.admin_path ?? '';
-  modal.querySelector('input[name=project_modules]').value = data?.project_modules ?? '';
   modal.querySelector('input[name=project_command]').value = data?.project_command ?? '';
+  modal.querySelector('input[name=project_modules]').value = data?.project_modules ?? '';
+  modal.querySelector('input[name=project_url]').value = data?.project_url ?? 'http'+(data?.ssl ?? false ? 's' : '')+'://{host}';
+  modal.querySelector('input[type=checkbox][name=project_use_win_env]').checked = data?.project_use_win_env ?? false;
 }
 
 const domainModal = document.getElementById('modal-domain');

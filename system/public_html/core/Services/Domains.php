@@ -87,24 +87,27 @@ class Domains
             $enabled = $domain->enabled ? 'on' : 'off';
             $ssl = $domain->ssl ? 'on' : 'off';
             $selfConfig = $domain->self_config ? 'on' : 'off';
+            $projectUseWinEnv = $domain->project_use_win_env ? 'on' : 'off';
 
             $ini .= PHP_EOL;
             $ini .= <<<DOMAIN
 [$domain->host]
 
-aliases         = $domain->aliases
-enabled         = $enabled
-engine          = $domain->engine
-ip              = $domain->ip
-log_format      = $domain->log_format
-cgi_directory   = $cgiDirectory
-root_directory  = $rootDirectory
-self_config     = $selfConfig
-ssl             = $ssl
-ssl_cert_file   = $sslCertFile
-ssl_key_file    = $sslKeyFile
-project_modules = $domain->project_modules
-project_command = $domain->project_command
+aliases             = $domain->aliases
+enabled             = $enabled
+engine              = $domain->engine
+ip                  = $domain->ip
+log_format          = $domain->log_format
+cgi_directory       = $cgiDirectory
+root_directory      = $rootDirectory
+self_config         = $selfConfig
+ssl                 = $ssl
+ssl_cert_file       = $sslCertFile
+ssl_key_file        = $sslKeyFile
+project_command     = $domain->project_command
+project_modules     = $domain->project_modules
+project_url         = $domain->project_url
+project_use_win_env = $projectUseWinEnv
 DOMAIN;
             $ini .= PHP_EOL;
             foreach ($domain->toArray() as $key => $value) {
@@ -121,8 +124,10 @@ DOMAIN;
                     'ssl',
                     'ssl_cert_file',
                     'ssl_key_file',
-                    'project_modules',
                     'project_command',
+                    'project_modules',
+                    'project_url',
+                    'project_use_win_env',
                 ])) {
                     if (is_bool($value)) {
                         $value = $value ? 'on' : 'off';
