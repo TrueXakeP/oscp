@@ -81,7 +81,7 @@ class Domains
 
         foreach ($this->domains as $domain) {
             $cgiDirectory = $this->path($domain->cgi_directory);
-            $rootDirectory = $this->path($domain->root_directory);
+            $rootDirectory = str_replace($domain->host, '{host}', $this->path($domain->root_directory));
             $sslCertFile = $this->path($domain->ssl_cert_file);
             $sslKeyFile = $this->path($domain->ssl_key_file);
             $enabled = $domain->enabled ? 'on' : 'off';
