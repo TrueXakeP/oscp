@@ -96,6 +96,9 @@
       </a>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
+          <a class="nav-link" id='clibtn' href="javascript:void(0)">CLI</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="https://github.com/OSPanel/OpenServerPanel" target="_blank">GitHub</a>
         </li>
         <li class="nav-item">
@@ -275,12 +278,38 @@ project_command =</pre>
   </div>
 </div>
 
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div class="toast align-items-center text-bg-danger border-0" id="APIErrorToast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+      <div class="toast-body">
+        {lang_59}
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
 <script src="/assets/bootstrap.bundle.min.js"></script>
+<script src="dist/js/axios.min.js"></script>
 <script src="/assets/helpers.js"></script>
 <script src="/assets/http.js"></script>
 <script src="/assets/modules.js"></script>
 <script src="/assets/domains.js"></script>
 <script src="/assets/main.js"></script>
+<script>
+  const toastElList = document.querySelectorAll('.toast')
+  const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl))
+  const errorToastEl = document.getElementById('APIErrorToast');
+  const cliBtn = document.getElementById('clibtn');
+  if(cliBtn) {
+    cliBtn.addEventListener('click', function () {
+      axios.get('{api_url}/cli').then(function (response) {
+      }).catch(function (error) {
+        const toast = bootstrap.Toast.getInstance(errorToastEl);
+        toast.show();
+      });
+    });
+  }
+</script>
 
 </body>
 </html>
