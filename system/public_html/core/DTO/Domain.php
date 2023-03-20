@@ -79,7 +79,7 @@ class Domain
 
     public function siteUrl(): string
     {
-        return 'http'.($this->ssl ? 's' : '').'://'.$this->host;
+        return !empty($this->project_url) ? $this->project_url : 'http'.($this->ssl ? 's' : '').'://'.$this->host;
     }
 
     public function adminUrl(): string
